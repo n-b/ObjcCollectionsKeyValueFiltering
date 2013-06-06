@@ -2,6 +2,7 @@
 
 Demo time : 
 
+```objective-c
 // Quick and easy search
 NSArray * employees = [...]
 Person * ceo = [employees firstObjectWithValue:@"timcook@apple.com" forKeyPath:@"email"];
@@ -12,5 +13,6 @@ Person * steve = [employees firstObjectWithValue:[NSNull null] forKeyPath:@"car.
 // Keypath collection operators
 NSArray * boxes = [...]
 NSArray * emptyBoxes = [boxes filteredArrayWithValue:@0 forKey:@"items.@count"];
+```
 
 More details [on my blog](http://bou.io/FilteringNSArrayWithKeyValueCoding).
