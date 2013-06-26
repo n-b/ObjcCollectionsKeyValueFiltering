@@ -50,3 +50,11 @@
 
 @end
 
+@interface NSMutableSet (KeyValueFiltering)
+
+/*
+ * Modifies current set to contain everything except the intersection with the other set.
+ */
+- (void)exceptSet:(NSSet *)other;
+
+@end

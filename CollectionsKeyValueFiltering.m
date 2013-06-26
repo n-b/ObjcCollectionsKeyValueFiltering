@@ -71,3 +71,17 @@
 
 @end
 
+@implementation NSMutableSet (KeyValueFiltering)
+
+- (void)exceptSet:(NSSet *)other
+{
+    NSMutableSet *cp = [[NSMutableSet alloc] initWithSet:self copyItems:NO];
+    [cp intersectSet:other];
+    
+    [cp enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
+        [self removeObject:obj];
+    }];
+}
+
+@end
+
