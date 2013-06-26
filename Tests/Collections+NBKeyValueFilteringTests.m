@@ -102,6 +102,21 @@
     STAssertEqualObjects([[testdata anyObjectWithValue:@"b" forKeyPath:@"key" ] objectForKey:@"value"], [result[@"b"]  objectForKey:@"value"], nil);
 }
 
+
+
+- (void) testSetExcept
+{
+    NSMutableSet * testdata = [NSMutableSet setWithArray:
+                        @[@1, @2, @3, @4]];
+    NSMutableSet * othertestdata = [NSMutableSet setWithArray:
+                        @[@3, @4, @5, @6]];
+    
+    [testdata exceptSet:othertestdata];
+
+    STAssertTrue(testdata.count == 2, nil);
+    
+}
+
 @end
 
 #pragma mark - KeyPathTests
