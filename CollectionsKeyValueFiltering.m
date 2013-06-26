@@ -31,6 +31,12 @@
 	return [NSArray arrayWithArray:objects];
 }
 
+- (NSDictionary*) indexedDictionaryByKeyPath:(NSString*)key
+{
+    NSArray *keys = [self valueForKeyPath:key];
+    return [[NSDictionary alloc] initWithObjects:self forKeys:keys];
+}
+
 @end
 
 
@@ -55,6 +61,12 @@
 	}
 	
 	return [NSSet setWithSet:objects];
+}
+
+- (NSDictionary*) indexedDictionaryByKeyPath:(NSString*)key
+{
+    NSArray *keys = [self valueForKeyPath:key];
+    return [[NSDictionary alloc] initWithObjects:[self allObjects] forKeys:keys];
 }
 
 @end
