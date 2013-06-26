@@ -40,6 +40,19 @@
     STAssertEqualObjects([[testdata filteredArrayWithValue:@"b" forKeyPath:@"key"] valueForKey:@"id"], (@[@1,@3,@5]), nil);
 }
 
+- (void) testArrayToIndexedDictionary
+{
+    NSArray * testdata = @[@{@"key" : @"a", @"value": @1},
+                           @{@"key" : @"b", @"value": @2},
+                           @{@"key" : @"c", @"value": @3},
+                           @{@"key" : @"d", @"value": @4},
+                           @{@"key" : @"e", @"value": @5},
+                           ];
+    
+    NSDictionary * result = [testdata indexedDictionaryByKeyPath:@"key"];
+    STAssertEqualObjects([testdata[1] objectForKey:@"value"], [result[@"b"]  objectForKey:@"value"], nil);
+}
+
 @end
 
 #pragma mark - Set
@@ -73,6 +86,20 @@
                         ]];
     
     STAssertEqualObjects([[testdata filteredSetWithValue:@"b" forKeyPath:@"key"] valueForKey:@"id"], ([NSSet setWithArray:@[@1,@3,@5]]), nil);
+}
+
+- (void) testSetToIndexedDictionary
+{
+    NSSet * testdata = [NSSet setWithArray:
+                          @[@{@"key" : @"a", @"value": @1},
+                           @{@"key" : @"b", @"value": @2},
+                           @{@"key" : @"c", @"value": @3},
+                           @{@"key" : @"d", @"value": @4},
+                           @{@"key" : @"e", @"value": @5},
+                           ]];
+    
+    NSDictionary * result = [testdata indexedDictionaryByKeyPath:@"key"];
+    STAssertEqualObjects([[testdata anyObjectWithValue:@"b" forKeyPath:@"key" ] objectForKey:@"value"], [result[@"b"]  objectForKey:@"value"], nil);
 }
 
 @end

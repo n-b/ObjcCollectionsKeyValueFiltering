@@ -65,8 +65,8 @@
 
 - (NSDictionary*) indexedDictionaryByKeyPath:(NSString*)key
 {
-    NSArray *keys = [self valueForKeyPath:key];
-    return [[NSDictionary alloc] initWithObjects:[self allObjects] forKeys:keys];
+    NSSet *keys = [self valueForKeyPath:key];
+    return [[NSDictionary alloc] initWithObjects:self.allObjects forKeys:keys.allObjects];
 }
 
 @end
