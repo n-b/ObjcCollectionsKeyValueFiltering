@@ -31,6 +31,12 @@
 	return [NSArray arrayWithArray:objects];
 }
 
+- (NSDictionary*) indexedDictionaryByKeyPath:(NSString*)key
+{
+    NSArray *keys = [self valueForKeyPath:key];
+    return [[NSDictionary alloc] initWithObjects:self forKeys:keys];
+}
+
 @end
 
 
@@ -55,6 +61,26 @@
 	}
 	
 	return [NSSet setWithSet:objects];
+}
+
+- (NSDictionary*) indexedDictionaryByKeyPath:(NSString*)key
+{
+    NSSet *keys = [self valueForKeyPath:key];
+    return [[NSDictionary alloc] initWithObjects:self.allObjects forKeys:keys.allObjects];
+}
+
+@end
+
+@implementation NSMutableSet (KeyValueFiltering)
+
+- (void)exceptSet:(NSSet *)other
+{
+    NSMutableSet *cp = [[NSMutableSet alloc] initWithSet:self copyItems:NO];
+    [cp intersectSet:other];
+    
+    [cp enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
+        [self removeObject:obj];
+    }];
 }
 
 @end

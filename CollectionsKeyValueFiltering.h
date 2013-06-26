@@ -22,6 +22,10 @@
  */
 - (NSArray*) filteredArrayWithValue:(id)value forKeyPath:(NSString*)keypath;
 
+/*
+ * Simple way to convert this array into a dictionary indexed by the given keypath.
+ */
+- (NSDictionary*) indexedDictionaryByKeyPath:(NSString*)key;
 @end
 
 
@@ -39,5 +43,18 @@
  */
 - (NSSet*) filteredSetWithValue:(id)value forKeyPath:(NSString*)keypath;
 
+/*
+ * Simple way to convert this set into a dictionary indexed by the given keypath.
+ */
+- (NSDictionary*) indexedDictionaryByKeyPath:(NSString*)key;
+
 @end
 
+@interface NSMutableSet (KeyValueFiltering)
+
+/*
+ * Modifies current set to contain everything except the intersection with the other set.
+ */
+- (void)exceptSet:(NSSet *)other;
+
+@end
